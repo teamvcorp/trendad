@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { useAppState } from "@/app/lib/context";
@@ -91,10 +91,10 @@ export default function TrendDiscovery() {
         >
           {loading ? (
             <span className="flex items-center gap-2">
-              <span className="animate-spin">âŸ³</span> Searching...
+              <span className="animate-spin">⟳</span> Searching...
             </span>
           ) : (
-            "ðŸ” Search Trends"
+            "🔍 Search Trends"
           )}
         </button>
       </div>
@@ -118,22 +118,22 @@ export default function TrendDiscovery() {
       </div>
       {searched && Object.keys(sourceCounts).length > 0 && !sourceCounts.youtube && (
         <p className="text-xs text-muted">
-          ðŸ’¡ Google Trends + Reddit + Hacker News are always live. Add a <code className="bg-secondary px-1 rounded">YOUTUBE_API_KEY</code> to <code className="bg-secondary px-1 rounded">.env.local</code> for YouTube results.
+          💡 Google Trends + Reddit + Hacker News are always live. Add a <code className="bg-secondary px-1 rounded">YOUTUBE_API_KEY</code> to <code className="bg-secondary px-1 rounded">.env.local</code> for YouTube results.
         </p>
       )}
 
       {/* Results */}
       {loading && (
         <div className="text-center py-16">
-          <div className="text-5xl mb-4 animate-pulse-dot">ðŸ”¥</div>
+          <div className="text-5xl mb-4 animate-pulse-dot">🔥</div>
           <p className="text-muted">Fetching live trends from Google, Reddit, YouTube &amp; Hacker News...</p>
-          <p className="text-xs text-muted mt-2">This hits real APIs â€” may take a few seconds</p>
+          <p className="text-xs text-muted mt-2">This hits real APIs — may take a few seconds</p>
         </div>
       )}
 
       {!loading && searched && trends.length === 0 && (
         <div className="text-center py-16 text-muted">
-          <div className="text-5xl mb-4">ðŸ¤·</div>
+          <div className="text-5xl mb-4">🤷</div>
           <p>No trends found. Try a different category or adjust your business description.</p>
         </div>
       )}
@@ -142,7 +142,7 @@ export default function TrendDiscovery() {
         <>
           <div className="flex items-center justify-between">
             <p className="text-sm text-muted">
-              {trends.length} trends found â€” select up to 5
+              {trends.length} trends found — select up to 5
             </p>
             <p className="text-sm font-semibold text-primary">
               {selectedTrends.length}/5 selected
@@ -173,7 +173,7 @@ export default function TrendDiscovery() {
                       </span>
                       <span className="text-xs text-muted">{trend.category}</span>
                       <span className="text-xs text-accent font-medium">
-                        ðŸ“ˆ {trend.volume}
+                        📈 {trend.volume}
                       </span>
                     </div>
                     <h3 className="font-semibold text-base truncate">{trend.title}</h3>
@@ -185,7 +185,7 @@ export default function TrendDiscovery() {
                         onClick={(e) => e.stopPropagation()}
                         className="text-xs text-primary hover:underline mt-0.5 inline-block"
                       >
-                        View source â†—
+                        View source ↗
                       </a>
                     )}
                   </div>
@@ -193,7 +193,7 @@ export default function TrendDiscovery() {
                     className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-1 transition
                     ${isSelected(trend.id) ? "border-primary bg-primary text-white" : "border-border"}`}
                   >
-                    {isSelected(trend.id) && <span className="text-xs">âœ“</span>}
+                    {isSelected(trend.id) && <span className="text-xs">✓</span>}
                   </div>
                 </div>
               </button>
@@ -208,7 +208,7 @@ export default function TrendDiscovery() {
           onClick={() => setStep("input")}
           className="px-6 py-3 rounded-xl border border-border font-semibold hover:bg-secondary transition"
         >
-          â† Back
+          ← Back
         </button>
         <button
           onClick={() => setStep("ads")}
@@ -221,7 +221,7 @@ export default function TrendDiscovery() {
             }`}
         >
           Generate Ads with {selectedTrends.length} Trend
-          {selectedTrends.length !== 1 ? "s" : ""} â†’
+          {selectedTrends.length !== 1 ? "s" : ""} →
         </button>
       </div>
     </div>

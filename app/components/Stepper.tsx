@@ -33,9 +33,9 @@ export default function Stepper() {
             <Image
               src="/1024Logo.png"
               alt="TrendAd"
-              width={140}
-              height={40}
-              className="h-9 w-auto"
+              width={420}
+              height={120}
+              className="h-[108px] w-auto"
               priority
             />
           </div>

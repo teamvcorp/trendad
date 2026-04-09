@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import { useAppState } from "@/app/lib/context";
@@ -15,17 +15,17 @@ const platformGuides: Record<
     loginUrl: "https://www.facebook.com/login",
     createAdUrl: "https://www.facebook.com/ads/manager",
     steps: [
-      "Create a Facebook App at developers.facebook.com/apps/create/ â€” select 'Other' then 'None' as app type",
+      "Create a Facebook App at developers.facebook.com/apps/create/ — select 'Other' then 'None' as app type",
       "Go to Graph API Explorer (developers.facebook.com/tools/explorer/)",
       "Select your app, then add permissions: pages_manage_posts, pages_read_engagement, pages_show_list",
       "Click 'Generate Access Token' and authorize",
       "Run 'me/accounts' in the Explorer to get your Page token and Page ID",
       "Paste the Page Access Token and Page ID into the fields above",
-      "Click 'ðŸš€ Publish' on any ad card to post directly to your Facebook Page!",
+      "Click '🚀 Publish' on any ad card to post directly to your Facebook Page!",
       "For paid ads: go to Ads Manager (facebook.com/ads/manager) and paste your ad copy there",
     ],
     tips: [
-      "App type must be 'None' â€” Business and Consumer types don't include pages_manage_posts",
+      "App type must be 'None' — Business and Consumer types don't include pages_manage_posts",
       "Page tokens from the Explorer are short-lived (~1 hour). For longer tokens, exchange via the Token Debugger",
       "Use Facebook Business Suite for easier organic post management",
       "For paid ads, start with a $5-10/day budget to test",
@@ -49,7 +49,7 @@ const platformGuides: Record<
       "Review and launch!",
     ],
     tips: [
-      "Use 'Responsive Search Ads' â€” Google will mix & match headlines",
+      "Use 'Responsive Search Ads' — Google will mix & match headlines",
       "Add at least 10 headlines and 4 descriptions for best results",
       "Use negative keywords to avoid irrelevant clicks",
       "Enable 'Smart Bidding' to let Google optimize automatically",
@@ -73,9 +73,9 @@ const platformGuides: Record<
       "Review and launch your video campaign!",
     ],
     tips: [
-      "Hook viewers in the first 5 seconds â€” that's before they can skip",
+      "Hook viewers in the first 5 seconds — that's before they can skip",
       "Keep video ads 15-30 seconds for best engagement",
-      "Use captions â€” 85% of videos are watched without sound",
+      "Use captions — 85% of videos are watched without sound",
       "Add end screens and cards linking to your sign-up page",
       "Target competitor channel audiences for relevant viewers",
       "Use bumper ads (6 sec) for brand awareness on a budget",
@@ -149,7 +149,7 @@ export default function PublishPanel() {
           setAdImageUrls(defaults);
         }
       } catch {
-        // Silently fail â€” user can still upload manually
+        // Silently fail — user can still upload manually
       }
     })();
   }, [businessInfo.imageFile, defaultImageUploaded, generatedAds]);
@@ -317,7 +317,7 @@ export default function PublishPanel() {
                   : "bg-secondary text-muted hover:text-foreground"
               }`}
             >
-              {p === "facebook" ? "ðŸ“˜" : p === "google" ? "ðŸ”" : "â–¶ï¸"}{" "}
+              {p === "facebook" ? "📘" : p === "google" ? "🔍" : "▶️"}{" "}
               {p.charAt(0).toUpperCase() + p.slice(1)} ({count})
             </button>
           );
@@ -332,7 +332,7 @@ export default function PublishPanel() {
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-4 py-2 rounded-xl bg-secondary hover:bg-border transition text-sm font-medium"
         >
-          ðŸ”‘ Log in to {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}
+          🔑 Log in to {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}
           {activeTab === "youtube" ? " (via Google Ads)" : ""}
         </a>
         <a
@@ -341,7 +341,7 @@ export default function PublishPanel() {
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/10 text-primary hover:bg-primary/20 transition text-sm font-medium"
         >
-          âž• Create New {activeTab === "youtube" ? "Video" : ""} Ad Campaign
+          ➕ Create New {activeTab === "youtube" ? "Video" : ""} Ad Campaign
         </a>
         <button
           onClick={() =>
@@ -349,20 +349,20 @@ export default function PublishPanel() {
           }
           className="flex items-center gap-2 px-4 py-2 rounded-xl bg-accent/10 text-accent hover:bg-accent/20 transition text-sm font-medium"
         >
-          ðŸ“– {expandedGuide === activeTab ? "Hide" : "Show"} Step-by-Step Guide
+          📖 {expandedGuide === activeTab ? "Hide" : "Show"} Step-by-Step Guide
         </button>
       </div>
 
-      {/* Publish from app â€” token inputs */}
+      {/* Publish from app — token inputs */}
       {activeTab === "facebook" && (
         <div className="bg-facebook/5 border border-facebook/20 rounded-xl p-4 space-y-3">
           <h4 className="font-semibold text-sm flex items-center gap-2">
-            ðŸ“˜ Publish directly to Facebook
+            📘 Publish directly to Facebook
             <span className="text-xs text-muted font-normal">(requires Page Access Token from <code className="bg-secondary px-1 rounded">me/accounts</code>)</span>
           </h4>
           <div className="bg-yellow-50 dark:bg-yellow-950/30 border border-yellow-200 dark:border-yellow-900 rounded-lg p-3 text-xs space-y-1">
-            <p className="font-semibold text-yellow-700 dark:text-yellow-400">âš ï¸ Required permissions: <code className="bg-secondary px-1 rounded">pages_manage_posts</code> + <code className="bg-secondary px-1 rounded">pages_read_engagement</code></p>
-            <p className="text-yellow-600 dark:text-yellow-500">Both the Page Access Token and Page ID must come from the <code className="bg-secondary px-1 rounded">me/accounts</code> Graph API response â€” do NOT use the User Access Token from the top of the Explorer.</p>
+            <p className="font-semibold text-yellow-700 dark:text-yellow-400">⚠️ Required permissions: <code className="bg-secondary px-1 rounded">pages_manage_posts</code> + <code className="bg-secondary px-1 rounded">pages_read_engagement</code></p>
+            <p className="text-yellow-600 dark:text-yellow-500">Both the Page Access Token and Page ID must come from the <code className="bg-secondary px-1 rounded">me/accounts</code> Graph API response — do NOT use the User Access Token from the top of the Explorer.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
@@ -392,7 +392,7 @@ export default function PublishPanel() {
               <p className="font-semibold text-foreground">Step 1: Create a Facebook App with type &quot;None&quot;</p>
               <ol className="ml-4 space-y-1 list-decimal">
                 <li>Go to <a href="https://developers.facebook.com/apps/create/" target="_blank" rel="noopener noreferrer" className="text-facebook underline">Create a New App</a></li>
-                <li>Select <strong>&quot;Other&quot;</strong> â†’ then select app type <strong>&quot;None&quot;</strong></li>
+                <li>Select <strong>&quot;Other&quot;</strong> → then select app type <strong>&quot;None&quot;</strong></li>
                 <li>Do <strong>NOT</strong> connect a Business Portfolio</li>
                 <li>Name it anything and click Create</li>
               </ol>
@@ -408,17 +408,17 @@ export default function PublishPanel() {
               <p className="font-semibold text-foreground">Step 3: Get Page token &amp; ID from <code className="bg-secondary px-1 rounded">me/accounts</code></p>
               <ol className="ml-4 space-y-1 list-decimal">
                 <li>In the Explorer query field, type <code className="bg-secondary px-1 rounded font-bold">me/accounts</code> and click <strong>Submit</strong></li>
-                <li>The JSON response lists your Pages â€” each has <code className="bg-secondary px-1 rounded">access_token</code> and <code className="bg-secondary px-1 rounded">id</code></li>
-                <li>Copy the <code className="bg-secondary px-1 rounded">access_token</code> value â†’ paste into <strong>&quot;Page Access Token&quot;</strong> above</li>
-                <li>Copy the <code className="bg-secondary px-1 rounded">id</code> value â†’ paste into <strong>&quot;Page ID&quot;</strong> above</li>
+                <li>The JSON response lists your Pages — each has <code className="bg-secondary px-1 rounded">access_token</code> and <code className="bg-secondary px-1 rounded">id</code></li>
+                <li>Copy the <code className="bg-secondary px-1 rounded">access_token</code> value → paste into <strong>&quot;Page Access Token&quot;</strong> above</li>
+                <li>Copy the <code className="bg-secondary px-1 rounded">id</code> value → paste into <strong>&quot;Page ID&quot;</strong> above</li>
               </ol>
 
               <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 rounded-lg p-2 mt-2">
                 <p className="text-red-600 dark:text-red-400 font-semibold">Common mistakes:</p>
                 <ul className="ml-4 list-disc text-red-600 dark:text-red-400 mt-1 space-y-0.5">
                   <li>Using the User token from the top of the Explorer instead of the Page token from <code className="bg-secondary px-1 rounded">me/accounts</code></li>
-                  <li>App type is &quot;Business&quot; or &quot;Consumer&quot; â€” <code className="bg-secondary px-1 rounded">pages_manage_posts</code> won&apos;t be available</li>
-                  <li>Connecting a Business Portfolio during app creation â€” don&apos;t do this</li>
+                  <li>App type is &quot;Business&quot; or &quot;Consumer&quot; — <code className="bg-secondary px-1 rounded">pages_manage_posts</code> won&apos;t be available</li>
+                  <li>Connecting a Business Portfolio during app creation — don&apos;t do this</li>
                   <li>Not granting both <code className="bg-secondary px-1 rounded">pages_manage_posts</code> AND <code className="bg-secondary px-1 rounded">pages_read_engagement</code></li>
                 </ul>
               </div>
@@ -429,7 +429,7 @@ export default function PublishPanel() {
               onClick={saveTokensToProfile}
               className="text-xs px-3 py-1.5 rounded-lg bg-facebook/10 text-facebook hover:bg-facebook/20 transition font-medium"
             >
-              ðŸ’¾ Save tokens to profile
+              💾 Save tokens to profile
             </button>
           )}
         </div>
@@ -438,7 +438,7 @@ export default function PublishPanel() {
       {activeTab === "youtube" && (
         <div className="bg-youtube/5 border border-youtube/20 rounded-xl p-4 space-y-3">
           <h4 className="font-semibold text-sm flex items-center gap-2">
-            â–¶ï¸ Publish to YouTube
+            ▶️ Publish to YouTube
             <span className="text-xs text-muted font-normal">(requires OAuth2 token)</span>
           </h4>
           <div>
@@ -466,7 +466,7 @@ export default function PublishPanel() {
               onClick={saveTokensToProfile}
               className="text-xs px-3 py-1.5 rounded-lg bg-youtube/10 text-youtube hover:bg-youtube/20 transition font-medium"
             >
-              ðŸ’¾ Save token to profile
+              💾 Save token to profile
             </button>
           )}
         </div>
@@ -475,7 +475,7 @@ export default function PublishPanel() {
       {activeTab === "google" && (
         <div className="bg-google/5 border border-google/20 rounded-xl p-4">
           <h4 className="font-semibold text-sm flex items-center gap-2">
-            ðŸ” Google Ads â€” Manual Posting
+            🔍 Google Ads — Manual Posting
           </h4>
           <p className="text-xs text-muted mt-1">
             Google Ads requires a developer token and OAuth2 for API access. Use the &quot;Copy Ad Text&quot; button below and paste into{" "}
@@ -503,14 +503,14 @@ export default function PublishPanel() {
             ))}
           </ol>
           <div className="border-t border-border pt-4">
-            <h4 className="font-semibold text-sm mb-2">ðŸ’¡ Pro Tips</h4>
+            <h4 className="font-semibold text-sm mb-2">💡 Pro Tips</h4>
             <ul className="space-y-1.5">
               {guide.tips.map((tip, i) => (
                 <li
                   key={i}
                   className="flex gap-2 items-start text-sm text-muted"
                 >
-                  <span className="text-accent">â€¢</span>
+                  <span className="text-accent">•</span>
                   {tip}
                 </li>
               ))}
@@ -541,7 +541,7 @@ export default function PublishPanel() {
                       : "bg-primary text-white hover:bg-primary-hover"
                   }`}
                 >
-                  {copiedId === ad.id ? "âœ“ Copied!" : "ðŸ“‹ Copy Ad Text"}
+                  {copiedId === ad.id ? "✓ Copied!" : "📋 Copy Ad Text"}
                 </button>
                 {activeTab === "facebook" && fbToken && fbPageId && (
                   <button
@@ -549,7 +549,7 @@ export default function PublishPanel() {
                     disabled={publishing === ad.id}
                     className="px-4 py-1.5 rounded-lg text-sm font-semibold bg-facebook text-white hover:bg-facebook/80 transition disabled:opacity-50"
                   >
-                    {publishing === ad.id ? "Publishing..." : "ðŸš€ Publish"}
+                    {publishing === ad.id ? "Publishing..." : "🚀 Publish"}
                   </button>
                 )}
                 {activeTab === "youtube" && ytToken && (
@@ -558,7 +558,7 @@ export default function PublishPanel() {
                     disabled={publishing === ad.id}
                     className="px-4 py-1.5 rounded-lg text-sm font-semibold bg-youtube text-white hover:bg-youtube/80 transition disabled:opacity-50"
                   >
-                    {publishing === ad.id ? "Publishing..." : "ðŸš€ Publish"}
+                    {publishing === ad.id ? "Publishing..." : "🚀 Publish"}
                   </button>
                 )}
               </div>
@@ -569,7 +569,7 @@ export default function PublishPanel() {
                   ? "bg-accent/10 text-accent border border-accent/20"
                   : "bg-red-50 text-red-600 border border-red-200 dark:bg-red-950/30 dark:text-red-400 dark:border-red-900"
               }`}>
-                {publishResult[ad.id].success ? "âœ… " : "âŒ "}{publishResult[ad.id].message}
+                {publishResult[ad.id].success ? "✅ " : "❌ "}{publishResult[ad.id].message}
               </div>
             )}
             <div className="grid md:grid-cols-2 gap-4 p-4">
@@ -584,14 +584,14 @@ export default function PublishPanel() {
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <p className="text-xs text-muted uppercase font-semibold tracking-wide">
-                    Ad Copy â€” edit below to fix typos
+                    Ad Copy — edit below to fix typos
                   </p>
                   {editedText[ad.id] && (
                     <button
                       onClick={() => setEditedText((prev) => { const n = { ...prev }; delete n[ad.id]; return n; })}
                       className="text-xs text-muted hover:text-foreground"
                     >
-                      â†© Reset
+                      ↩ Reset
                     </button>
                   )}
                 </div>
@@ -617,14 +617,14 @@ export default function PublishPanel() {
                       onClick={() => setAdImageUrls((prev) => { const n = { ...prev }; delete n[ad.id]; return n; })}
                       className="text-xs text-red-500 hover:text-red-700 px-2 py-1 rounded"
                     >
-                      âœ• Remove
+                      ✕ Remove
                     </button>
                   </div>
                 ) : (
                   <label className="flex flex-col items-center gap-2 cursor-pointer">
-                    <span className="text-2xl">{uploading === ad.id ? "â³" : "ðŸ–¼ï¸"}</span>
+                    <span className="text-2xl">{uploading === ad.id ? "⏳" : "🖼️"}</span>
                     <span className="text-sm text-muted">
-                      {uploading === ad.id ? "Uploading..." : "Click to attach an image (PNG, JPG, WebP â€” max 5MB)"}
+                      {uploading === ad.id ? "Uploading..." : "Click to attach an image (PNG, JPG, WebP — max 5MB)"}
                     </span>
                     <input
                       type="file"
@@ -657,13 +657,13 @@ export default function PublishPanel() {
           onClick={() => setStep("ads")}
           className="px-6 py-3 rounded-xl border border-border font-semibold hover:bg-secondary transition"
         >
-          â† Back to Ads
+          ← Back to Ads
         </button>
         <button
           onClick={() => setStep("input")}
           className="flex-1 py-3 rounded-xl font-semibold border-2 border-primary text-primary text-lg hover:bg-primary/10 transition"
         >
-          ðŸ”„ Start New Campaign
+          🔄 Start New Campaign
         </button>
       </div>
     </div>

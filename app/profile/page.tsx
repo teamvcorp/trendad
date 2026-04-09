@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
@@ -115,11 +115,11 @@ export default function ProfilePage() {
           <details className="text-xs text-muted">
             <summary className="cursor-pointer hover:text-foreground font-medium">How to get these?</summary>
             <ol className="mt-2 ml-4 space-y-1 list-decimal">
-              <li>Create a Facebook App at <a href="https://developers.facebook.com/apps/create/" target="_blank" rel="noopener noreferrer" className="text-facebook underline">developers.facebook.com</a> â€” select &quot;Other&quot; â†’ type &quot;None&quot; (do NOT connect a Business Portfolio)</li>
+              <li>Create a Facebook App at <a href="https://developers.facebook.com/apps/create/" target="_blank" rel="noopener noreferrer" className="text-facebook underline">developers.facebook.com</a> — select &quot;Other&quot; → type &quot;None&quot; (do NOT connect a Business Portfolio)</li>
               <li>Go to <a href="https://developers.facebook.com/tools/explorer/" target="_blank" rel="noopener noreferrer" className="text-facebook underline">Graph API Explorer</a>, select your app</li>
               <li>Add permissions: <code className="bg-secondary px-1 rounded">pages_manage_posts</code> + <code className="bg-secondary px-1 rounded">pages_read_engagement</code> + <code className="bg-secondary px-1 rounded">pages_show_list</code></li>
               <li>Click &quot;Generate Access Token&quot; and authorize</li>
-              <li>Query <code className="bg-secondary px-1 rounded">me/accounts</code> â†’ copy the <code className="bg-secondary px-1 rounded">access_token</code> and <code className="bg-secondary px-1 rounded">id</code> from the response</li>
+              <li>Query <code className="bg-secondary px-1 rounded">me/accounts</code> → copy the <code className="bg-secondary px-1 rounded">access_token</code> and <code className="bg-secondary px-1 rounded">id</code> from the response</li>
             </ol>
           </details>
         </div>
@@ -127,7 +127,7 @@ export default function ProfilePage() {
         {/* YouTube */}
         <div className="bg-white dark:bg-[#1e1535] rounded-2xl border border-border p-6 space-y-4">
           <h2 className="font-bold flex items-center gap-2">
-            <span className="w-8 h-8 rounded-lg bg-youtube flex items-center justify-center text-white text-sm">â–¶</span>
+            <span className="w-8 h-8 rounded-lg bg-youtube flex items-center justify-center text-white text-sm">▶</span>
             YouTube
           </h2>
           <div>
@@ -179,13 +179,13 @@ export default function ProfilePage() {
             disabled={saving}
             className="px-6 py-2.5 rounded-xl bg-primary text-white font-semibold hover:bg-primary-hover transition disabled:opacity-50"
           >
-            {saving ? "Saving..." : "ðŸ’¾ Save Tokens"}
+            {saving ? "Saving..." : "💾 Save Tokens"}
           </button>
           <Link
             href="/"
             className="px-6 py-2.5 rounded-xl bg-secondary text-foreground font-semibold hover:bg-border transition"
           >
-            â† Back to App
+            ← Back to App
           </Link>
         </div>
       </main>

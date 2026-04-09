@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useRef } from "react";
 import { useAppState } from "@/app/lib/context";
@@ -45,7 +45,7 @@ export default function BusinessForm() {
       });
       const data = await res.json();
       if (data.error) {
-        setScrapeMsg(`âš ï¸ ${data.error}`);
+        setScrapeMsg(`⚠️ ${data.error}`);
         return;
       }
       const ext = data.extracted;
@@ -58,11 +58,11 @@ export default function BusinessForm() {
       }));
       setScrapeMsg(
         data.source === "gemini"
-          ? "âœ… Gemini extracted business info from the page!"
-          : "âœ… Basic info extracted (add GEMINI_API_KEY for smarter extraction)"
+          ? "✅ Gemini extracted business info from the page!"
+          : "✅ Basic info extracted (add GEMINI_API_KEY for smarter extraction)"
       );
     } catch {
-      setScrapeMsg("âš ï¸ Could not fetch that URL");
+      setScrapeMsg("⚠️ Could not fetch that URL");
     } finally {
       setScraping(false);
     }
@@ -89,14 +89,14 @@ export default function BusinessForm() {
       {/* Product URL auto-fill */}
       <div className="bg-gradient-to-r from-primary/5 to-accent/5 border border-primary/20 rounded-xl p-4">
         <label className="block text-sm font-semibold mb-1.5">
-          ðŸ”— Product / Service URL <span className="text-xs text-muted font-normal">(auto-fill with AI)</span>
+          🔗 Product / Service URL <span className="text-xs text-muted font-normal">(auto-fill with AI)</span>
         </label>
         <div className="flex gap-2">
           <input
             type="url"
             value={form.productUrl}
             onChange={(e) => updateField("productUrl", e.target.value)}
-            placeholder="https://yourproduct.com â€” we'll pull info automatically"
+            placeholder="https://yourproduct.com — we'll pull info automatically"
             className="flex-1 px-4 py-3 rounded-xl border border-border bg-white dark:bg-[#110d1d] focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition"
           />
           <button
@@ -107,10 +107,10 @@ export default function BusinessForm() {
           >
             {scraping ? (
               <span className="flex items-center gap-1.5">
-                <span className="animate-spin">âŸ³</span> Analyzing...
+                <span className="animate-spin">⟳</span> Analyzing...
               </span>
             ) : (
-              "âœ¨ Auto-Fill"
+              "✨ Auto-Fill"
             )}
           </button>
         </div>
@@ -215,9 +215,9 @@ export default function BusinessForm() {
               </div>
             ) : (
               <div className="text-muted">
-                <div className="text-4xl mb-2">ðŸ“·</div>
+                <div className="text-4xl mb-2">📷</div>
                 <p className="text-sm">
-                  Click to upload an image for your ad (PNG, JPG â€” max 5MB)
+                  Click to upload an image for your ad (PNG, JPG — max 5MB)
                 </p>
               </div>
             )}
@@ -238,7 +238,7 @@ export default function BusinessForm() {
         className={`w-full py-3.5 rounded-xl font-semibold text-white text-lg transition-all
           ${isValid ? "bg-primary hover:bg-primary-hover shadow-lg hover:shadow-xl" : "bg-muted cursor-not-allowed"}`}
       >
-        Find Viral Trends â†’
+        Find Viral Trends →
       </button>
     </form>
   );

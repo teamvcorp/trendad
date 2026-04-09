@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
@@ -130,7 +130,7 @@ export default function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               required
               minLength={6}
-              placeholder={mode === "register" ? "At least 6 characters" : "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"}
+              placeholder={mode === "register" ? "At least 6 characters" : "••••••••"}
               className="w-full px-3 py-2.5 rounded-lg border border-border bg-background text-sm outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
@@ -164,7 +164,7 @@ export default function LoginPage() {
 
         <p className="text-center text-xs text-muted mt-4">
           <a href="/" className="underline hover:text-foreground">
-            Continue without account â†’
+            Continue without account →
           </a>
         </p>
       </div>

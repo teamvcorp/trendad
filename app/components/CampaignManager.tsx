@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import { useAppState } from "@/app/lib/context";
@@ -114,7 +114,7 @@ export default function CampaignManager() {
     <div className="bg-white dark:bg-[#1e1535] rounded-xl border border-border p-4">
       <div className="flex items-center justify-between mb-3">
         <h3 className="font-bold text-sm flex items-center gap-2">
-          ðŸ’¾ Saved Campaigns
+          💾 Saved Campaigns
           <span className="text-xs text-muted font-normal">
             ({savedCampaigns.length}/3)
           </span>
@@ -124,7 +124,7 @@ export default function CampaignManager() {
             onClick={() => setShowSaveDialog(true)}
             className="text-xs px-3 py-1.5 bg-primary text-white rounded-lg font-semibold hover:bg-primary-hover transition"
           >
-            {currentCampaignId ? "ðŸ’¾ Update" : "+ Save Current"}
+            {currentCampaignId ? "💾 Update" : "+ Save Current"}
           </button>
         )}
       </div>
@@ -187,7 +187,7 @@ export default function CampaignManager() {
             >
               <p className="font-semibold text-sm truncate">{c.name}</p>
               <p className="text-xs text-muted">
-                {c.businessInfo.serviceName} Â· {c.generatedAds.length} ads Â·{" "}
+                {c.businessInfo.serviceName} · {c.generatedAds.length} ads ·{" "}
                 {c.selectedTrends.length} trends
               </p>
               <p className="text-xs text-muted">
@@ -207,7 +207,7 @@ export default function CampaignManager() {
               )}
               {c.publishStatus?.youtube && (
                 <span className="w-5 h-5 rounded-full bg-youtube text-white text-[10px] flex items-center justify-center">
-                  â–¶
+                  ▶
                 </span>
               )}
               <button
@@ -219,7 +219,7 @@ export default function CampaignManager() {
                 className="w-5 h-5 rounded-full bg-danger/10 text-danger text-[10px] flex items-center justify-center hover:bg-danger/20 ml-1"
                 title="Delete campaign"
               >
-                {deleting === c._id ? "â€¦" : "âœ•"}
+                {deleting === c._id ? "…" : "✕"}
               </button>
             </div>
           </div>
