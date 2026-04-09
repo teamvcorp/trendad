@@ -1,26 +1,104 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf8fc;
+  --foreground: #1a1035;
+  --primary: #E91E8C;
+  --primary-hover: #d01a7d;
+  --secondary: #f3edf9;
+  --accent: #29ABE2;
+  --accent-hover: #1e94c8;
+  --danger: #ef4444;
+  --success: #39B54A;
+  --orange: #F7941D;
+  --deep-blue: #2E3192;
+  --facebook: #1877f2;
+  --google: #ea4335;
+  --youtube: #ff0000;
+  --border: #e4ddef;
+  --muted: #7c6f96;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+  --color-orange: var(--orange);
+  --color-deep-blue: var(--deep-blue);
+  --color-facebook: var(--facebook);
+  --color-google: var(--google);
+  --color-youtube: var(--youtube);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #110d1d;
+    --foreground: #f1edf9;
+    --secondary: #1e1535;
+    --border: #362b52;
+    --muted: #a498be;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 3px;
+}
+
+/* Step indicator animation */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(233, 30, 140, 0.1);
+}
+
+/* Brand gradient utilities */
+.brand-gradient {
+  background: linear-gradient(135deg, #E91E8C, #29ABE2);
+}
+.brand-gradient-text {
+  background: linear-gradient(135deg, #E91E8C, #29ABE2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.brand-gradient-warm {
+  background: linear-gradient(135deg, #F7941D, #E91E8C);
+}
+.brand-gradient-cool {
+  background: linear-gradient(135deg, #2E3192, #29ABE2);
 }
