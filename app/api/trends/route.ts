@@ -14,7 +14,7 @@ async function fetchGoogleTrends(geo: string): Promise<TrendResult[]> {
   try {
     const res = await fetch(
       `https://trends.google.com/trending/rss?geo=${encodeURIComponent(geo)}`,
-      { headers: { "User-Agent": "TrendAds/1.0" }, signal: AbortSignal.timeout(8000) }
+      { headers: { "User-Agent": "TrendAds/1.0" }, signal: AbortSignal.timeout(8000), cache: "no-store" }
     );
     if (!res.ok) return [];
     const xml = await res.text();
@@ -58,6 +58,7 @@ async function fetchRedditTrends(query: string): Promise<TrendResult[]> {
     const res = await fetch(url, {
       headers: { "User-Agent": "TrendAds/1.0 (trend-research)" },
       signal: AbortSignal.timeout(8000),
+      cache: "no-store",
     });
     if (!res.ok) return [];
     const json = await res.json();
@@ -88,7 +89,7 @@ async function fetchYouTubeTrends(query: string): Promise<TrendResult[]> {
 
   try {
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&order=viewCount&publishedAfter=${recentISO()}&maxResults=10&q=${encodeURIComponent(query)}&key=${apiKey}`;
-    const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
+    const res = await fetch(url, { signal: AbortSignal.timeout(8000), cache: "no-store" });
     if (!res.ok) return [];
     const json = await res.json();
 
@@ -112,7 +113,7 @@ async function fetchHackerNewsTrends(): Promise<TrendResult[]> {
   try {
     const res = await fetch(
       "https://hacker-news.firebaseio.com/v0/topstories.json",
-      { signal: AbortSignal.timeout(8000) }
+      { signal: AbortSignal.timeout(8000), cache: "no-store" }
     );
     if (!res.ok) return [];
     const ids: number[] = await res.json();
@@ -122,7 +123,7 @@ async function fetchHackerNewsTrends(): Promise<TrendResult[]> {
       ids.slice(0, 12).map(async (id) => {
         const r = await fetch(
           `https://hacker-news.firebaseio.com/v0/item/${id}.json`,
-          { signal: AbortSignal.timeout(5000) }
+          { signal: AbortSignal.timeout(5000), cache: "no-store" }
         );
         return r.ok ? r.json() : null;
       })

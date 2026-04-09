@@ -81,15 +81,27 @@ export async function POST(request: NextRequest) {
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-    const prompt = `Analyze this webpage content and extract business information for creating an ad campaign. Return ONLY valid JSON with these fields:
+    const prompt = `You are a marketing copywriter analyzing a business website to prepare an ad campaign.
+
+Read the webpage content below and produce polished, ad-ready business information. Do NOT just copy-paste raw text — rewrite and summarize intelligently.
+
+Return ONLY valid JSON with these fields:
 {
-  "serviceName": "the product or service name",
-  "description": "a compelling 2-3 sentence description of what they offer and key benefits",
-  "prices": "any pricing information found (or empty string if none)",
-  "contactInfo": "any contact info like email, phone (or empty string if none)"
+  "serviceName": "The official product or business name (short, clean — no taglines or slogans)",
+  "description": "Write a compelling 2-3 sentence marketing description. Highlight the core value proposition, key benefits, and what makes this business unique. Write in third person. Make it persuasive and concise — suitable for ad copy.",
+  "prices": "Summarize pricing clearly (e.g. 'Starting at $29/mo', 'Free plan available, Pro at $49/mo'). If no pricing found, return empty string.",
+  "contactInfo": "Extract the most useful contact method — email, phone number, or physical address. Format cleanly. If none found, return empty string.",
+  "signupUrl": "Find the best sign-up, get-started, or purchase URL. Look for links labeled sign up, get started, try free, buy now, etc. Return the full URL. If none found, return empty string."
 }
 
-Webpage content from ${parsed.hostname}:
+IMPORTANT RULES:
+- For description: Do NOT dump raw page text. Synthesize the information into a polished marketing paragraph.
+- For contactInfo: Only include actual contact details (email, phone, address), not social media links.
+- For signupUrl: Return a full absolute URL (starting with https://). If you find a relative path, prepend the site's domain.
+- If information for a field is genuinely not available, return an empty string.
+
+Website: ${parsed.hostname}
+Webpage content:
 ${pageText}`;
 
     let result;
@@ -134,6 +146,7 @@ ${pageText}`;
         description: String(extracted.description || "").slice(0, 500),
         prices: String(extracted.prices || "").slice(0, 200),
         contactInfo: String(extracted.contactInfo || "").slice(0, 200),
+        signupUrl: String(extracted.signupUrl || "").slice(0, 500),
       },
       source: "gemini",
     });

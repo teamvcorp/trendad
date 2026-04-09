@@ -55,6 +55,7 @@ export default function BusinessForm() {
         description: ext.description || prev.description,
         prices: ext.prices || prev.prices,
         contactInfo: ext.contactInfo || prev.contactInfo,
+        signupUrl: ext.signupUrl || prev.signupUrl,
       }));
       setScrapeMsg(
         data.source === "gemini"
