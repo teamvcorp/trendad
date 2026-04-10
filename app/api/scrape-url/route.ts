@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
         .replace(/<[^>]+>/g, " ")
         .replace(/\s+/g, " ")
         .trim()
-        .slice(0, 8000); // Keep first ~8K chars for Gemini context window
+        .slice(0, 30000); // Gemini 2.0 Flash supports large context — keep enough to summarize full page
     } catch {
       return NextResponse.json(
         { error: "Could not fetch the URL — is the site accessible?" },
@@ -88,7 +88,7 @@ Read the webpage content below and produce polished, ad-ready business informati
 Return ONLY valid JSON with these fields:
 {
   "serviceName": "The official product or business name (short, clean — no taglines or slogans)",
-  "description": "Write a compelling 2-3 sentence marketing description. Highlight the core value proposition, key benefits, and what makes this business unique. Write in third person. Make it persuasive and concise — suitable for ad copy.",
+  "description": "Write a comprehensive marketing summary (up to 150 words) covering the ENTIRE page. Include the core value proposition, all key products/services, main benefits, differentiators, and target audience. Synthesize everything on the page — do not stop early or omit sections. Write in third person, persuasive tone suitable for ad copy.",
   "prices": "Summarize pricing clearly (e.g. 'Starting at $29/mo', 'Free plan available, Pro at $49/mo'). If no pricing found, return empty string.",
   "contactInfo": "Extract the most useful contact method — email, phone number, or physical address. Format cleanly. If none found, return empty string.",
   "signupUrl": "Find the best sign-up, get-started, or purchase URL. Look for links labeled sign up, get started, try free, buy now, etc. Return the full URL. If none found, return empty string."
@@ -143,7 +143,7 @@ ${pageText}`;
     return NextResponse.json({
       extracted: {
         serviceName: String(extracted.serviceName || "").slice(0, 200),
-        description: String(extracted.description || "").slice(0, 500),
+        description: String(extracted.description || "").slice(0, 1500),
         prices: String(extracted.prices || "").slice(0, 200),
         contactInfo: String(extracted.contactInfo || "").slice(0, 200),
         signupUrl: String(extracted.signupUrl || "").slice(0, 500),

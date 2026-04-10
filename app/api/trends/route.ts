@@ -85,13 +85,22 @@ async function fetchRedditTrends(query: string): Promise<TrendResult[]> {
 // ── YouTube (Data API v3 — free tier: 10 000 units/day) ─────────────────
 async function fetchYouTubeTrends(query: string): Promise<TrendResult[]> {
   const apiKey = process.env.YOUTUBE_API_KEY;
-  if (!apiKey) return [];
+  if (!apiKey) {
+    console.warn("[YouTube] No YOUTUBE_API_KEY env var found");
+    return [];
+  }
 
   try {
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&order=viewCount&publishedAfter=${recentISO()}&maxResults=10&q=${encodeURIComponent(query)}&key=${apiKey}`;
-    const res = await fetch(url, { signal: AbortSignal.timeout(8000), cache: "no-store" });
-    if (!res.ok) return [];
+    console.log("[YouTube] Fetching:", url.replace(apiKey, "***"));
+    const res = await fetch(url, { signal: AbortSignal.timeout(10000), cache: "no-store" });
+    if (!res.ok) {
+      const errText = await res.text().catch(() => "");
+      console.error("[YouTube] API error", res.status, errText);
+      return [];
+    }
     const json = await res.json();
+    console.log("[YouTube] Got", json.items?.length ?? 0, "results");
 
     return (json.items ?? []).map(
       (item: { id: { videoId: string }; snippet: { title: string; channelTitle: string } }, i: number) => ({
@@ -103,7 +112,8 @@ async function fetchYouTubeTrends(query: string): Promise<TrendResult[]> {
         url: `https://www.youtube.com/watch?v=${item.id.videoId}`,
       })
     );
-  } catch {
+  } catch (err) {
+    console.error("[YouTube] Fetch exception:", err);
     return [];
   }
 }

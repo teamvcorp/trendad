@@ -148,7 +148,7 @@ export default function BusinessForm() {
             Description <span className="text-danger">*</span>
           </label>
           <textarea
-            rows={3}
+            rows={5}
             value={form.description}
             onChange={(e) => updateField("description", e.target.value)}
             placeholder="Describe what you offer, key benefits, what makes you unique..."
